@@ -13495,32 +13495,56 @@
                         }
                     }
                 });
-            const d = (0, l.useRef)(null);
-            let k = u ? "".concat("wss://scoreapi.newbsf.com") : "".concat("https://cache.tresting.com", "/");
-            (0, l.useEffect)((() => {
-                h(k, a);
-                {
-                    const e = document.referrer,
-                        a = e ? new URL(e) : null,
-                        n = a ? a.hostname : null;
-                    lr.get("https://casinoapi.tresting.com/v1/apiCalls/checkDomain?apiType=scoreStream&domain=".concat(n)).then((e => {
-                        const {
-                            error: a,
-                            message: n
-                        } = null === e || void 0 === e ? void 0 : e.data;
-                        a ? (s(n || "Unknown error occurred"), f()) : s(!1)
-                    })).catch((e => {
-                        var a, n;
-                        s((null === e || void 0 === e || null === (a = e.response) || void 0 === a || null === (n = a.data) || void 0 === n ? void 0 : n.message) || "Failed to verify domain."), f()
-                    }))
-                }
-                const e = () => {
-                    "visible" === document.visibilityState && (n.current && n.current.connected || h(k, a))
-                };
-                return document.addEventListener("visibilitychange", e), () => {
-                    document.removeEventListener("visibilitychange", e), f(), clearInterval(d.current)
-                }
-            }), [a, e, k]);
+            const d = useRef(null);
+
+let k = u
+  ? "wss://scoreapi.newbsf.com"
+  : "https://cache.tresting.com/";
+
+useEffect(() => {
+  // socket connect
+  h(k, a);
+
+  // ❌ REMOVE domain check पूरी तरह
+  // const e = document.referrer;
+  // const aRef = e ? new URL(e) : null;
+  // const n = aRef ? aRef.hostname : null;
+
+  // lr.get("https://casinoapi.tresting.com/v1/apiCalls/checkDomain?apiType=scoreStream&domain=" + n)
+  //   .then((res) => {
+  //     const { error, message } = res?.data;
+  //     if (error) {
+  //       s(message || "Unknown error occurred");
+  //       f();
+  //     } else {
+  //       s(false);
+  //     }
+  //   })
+  //   .catch((err) => {
+  //     s(err?.response?.data?.message || "Failed to verify domain.");
+  //     f();
+  //   });
+
+  // ✅ Direct success maan lo
+  s(false);
+
+  const handleVisibility = () => {
+    if (document.visibilityState === "visible") {
+      if (!(n.current && n.current.connected)) {
+        h(k, a);
+      }
+    }
+  };
+
+  document.addEventListener("visibilitychange", handleVisibility);
+
+  return () => {
+    document.removeEventListener("visibilitychange", handleVisibility);
+    f();
+    clearInterval(d.current);
+  };
+}, [a, e, k]);
+                            
             const f = () => {
                     n.current && (n.current.disconnect(), n.current = null)
                 },
