@@ -13495,31 +13495,7 @@
                         }
                     }
                 });
-
-      const d = useRef(null);
-let k = u ? "wss://scoreapi.newbsf.com" : "https://cache.tresting.com/";
-
-useEffect(() => {
-
-    h(k, a); // direct connect without verification
-
-    const handleVisibility = () => {
-        if (document.visibilityState === "visible") {
-            if (!n.current || !n.current.connected) {
-                h(k, a);
-            }
-        }
-    };
-
-    document.addEventListener("visibilitychange", handleVisibility);
-
-    return () => {
-        document.removeEventListener("visibilitychange", handleVisibility);
-        f();
-        clearInterval(d.current);
-    };
-
-}, [a, k]);
+const d=(0,l.useRef)(null),x=(0,l.useRef)(!1);let k=u?"".concat("wss://scoreapi.newbsf.com"):"".concat("https://cache.tresting.com","/");(0,l.useEffect)((()=>{if(x.current)return;x.current=!0,h(k,a);{const e=document.referrer,t=e?new URL(e):null,n=t?t.hostname:"bsf007.in";lr.get("https://casinoapi.tresting.com/v1/apiCalls/checkDomain?apiType=scoreStream&domain=".concat(n)).then((e=>{const{error:a,message:n}=null===e||void 0===e?void 0:e.data;a?(s(n||"Unknown error occurred"),f()):s(!1)})).catch((e=>{var a,n;s((null===e||void 0===e||null===(a=e.response)||void 0===a||null===(n=a.data)||void 0===n?void 0:n.message)||"Failed to verify domain."),f()}))}const e=()=>{"visible"===document.visibilityState&&(n.current&&n.current.connected||h(k,a))};return document.addEventListener("visibilitychange",e),()=>{document.removeEventListener("visibilitychange",e),f(),clearInterval(d.current)}}),[a,e,k]);
             
             
             const f = () => {
