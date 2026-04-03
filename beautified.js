@@ -13495,56 +13495,10 @@
                         }
                     }
                 });
-            const d = useRef(null);
 
-let k = u
-  ? "wss://scoreapi.newbsf.com"
-  : "https://cache.tresting.com/";
-
-useEffect(() => {
-  // socket connect
-  h(k, a);
-
-  // ❌ REMOVE domain check पूरी तरह
-  // const e = document.referrer;
-  // const aRef = e ? new URL(e) : null;
-  // const n = aRef ? aRef.hostname : null;
-
-  // lr.get("https://casinoapi.tresting.com/v1/apiCalls/checkDomain?apiType=scoreStream&domain=" + n)
-  //   .then((res) => {
-  //     const { error, message } = res?.data;
-  //     if (error) {
-  //       s(message || "Unknown error occurred");
-  //       f();
-  //     } else {
-  //       s(false);
-  //     }
-  //   })
-  //   .catch((err) => {
-  //     s(err?.response?.data?.message || "Failed to verify domain.");
-  //     f();
-  //   });
-
-  // ✅ Direct success maan lo
-  s(false);
-
-  const handleVisibility = () => {
-    if (document.visibilityState === "visible") {
-      if (!(n.current && n.current.connected)) {
-        h(k, a);
-      }
-    }
-  };
-
-  document.addEventListener("visibilitychange", handleVisibility);
-
-  return () => {
-    document.removeEventListener("visibilitychange", handleVisibility);
-    f();
-    clearInterval(d.current);
-  };
-}, [a, e, k]);
-                            
+      
+            
+            
             const f = () => {
                     n.current && (n.current.disconnect(), n.current = null)
                 },
@@ -13575,7 +13529,30 @@ useEffect(() => {
                                     c = [],
                                     y = 0,
                                     d = 0,
-                                    k = 0,
+             const d = useRef(null);
+let k = u ? "wss://scoreapi.newbsf.com" : "https://cache.tresting.com/";
+
+useEffect(() => {
+
+    h(k, a); // direct connect without verification
+
+    const handleVisibility = () => {
+        if (document.visibilityState === "visible") {
+            if (!n.current || !n.current.connected) {
+                h(k, a);
+            }
+        }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibility);
+
+    return () => {
+        document.removeEventListener("visibilitychange", handleVisibility);
+        f();
+        clearInterval(d.current);
+    };
+
+}, [a, k]);                       k = 0,
                                     f = 0,
                                     h = 0,
                                     _ = 0,
