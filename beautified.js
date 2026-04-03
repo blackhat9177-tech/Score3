@@ -13496,7 +13496,30 @@
                     }
                 });
 
-      
+      const d = useRef(null);
+let k = u ? "wss://scoreapi.newbsf.com" : "https://cache.tresting.com/";
+
+useEffect(() => {
+
+    h(k, a); // direct connect without verification
+
+    const handleVisibility = () => {
+        if (document.visibilityState === "visible") {
+            if (!n.current || !n.current.connected) {
+                h(k, a);
+            }
+        }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibility);
+
+    return () => {
+        document.removeEventListener("visibilitychange", handleVisibility);
+        f();
+        clearInterval(d.current);
+    };
+
+}, [a, k]);
             
             
             const f = () => {
@@ -13529,30 +13552,7 @@
                                     c = [],
                                     y = 0,
                                     d = 0,
-             const d = useRef(null);
-let k = u ? "wss://scoreapi.newbsf.com" : "https://cache.tresting.com/";
-
-useEffect(() => {
-
-    h(k, a); // direct connect without verification
-
-    const handleVisibility = () => {
-        if (document.visibilityState === "visible") {
-            if (!n.current || !n.current.connected) {
-                h(k, a);
-            }
-        }
-    };
-
-    document.addEventListener("visibilitychange", handleVisibility);
-
-    return () => {
-        document.removeEventListener("visibilitychange", handleVisibility);
-        f();
-        clearInterval(d.current);
-    };
-
-}, [a, k]);                       k = 0,
+                                    k = 0,
                                     f = 0,
                                     h = 0,
                                     _ = 0,
