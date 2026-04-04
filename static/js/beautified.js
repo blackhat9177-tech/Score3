@@ -13365,12 +13365,12 @@
        
         n = {
             protocol: "https:",
-            host: "score.tresting.com",
+            host: "api.bsf007.in",
             port: "443"
         };
 
       
-        e = "https://score.tresting.com";
+        e = "https://api.bsf007.in";
 
         if (null == e) e = n.protocol + "//" + n.host;
 
