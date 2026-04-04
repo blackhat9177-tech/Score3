@@ -13395,7 +13395,7 @@
     }(e, (a = a || {}).path || "/socket.io");
 
    
-    let r = "wss://score.tresting.com";
+    let r = "wss://api.bsf007.in";
 
     const l = n.id,
           i = n.path,
