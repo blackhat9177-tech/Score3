@@ -13355,22 +13355,64 @@
         const wl = {};
 
         function Ml(e, a) {
-            "object" === typeof e && (a = e, e = void 0);
-            const n = function(e) {
-                    let a = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "",
-                        n = arguments.length > 2 ? arguments[2] : void 0,
-                        r = e;
-                    n = n || "undefined" !== typeof location && location, null == e && (e = n.protocol + "//" + n.host), "string" === typeof e && ("/" === e.charAt(0) && (e = "/" === e.charAt(1) ? n.protocol + e : n.host + e), /^(https?|wss?):\/\//.test(e) || (e = "undefined" !== typeof n ? n.protocol + "//" + e : "https://" + e), r = Xr(e)), r.port || (/^(http|ws)$/.test(r.protocol) ? r.port = "80" : /^(http|ws)s$/.test(r.protocol) && (r.port = "443")), r.path = r.path || "/";
-                    const l = -1 !== r.host.indexOf(":") ? "[" + r.host + "]" : r.host;
-                    return r.id = r.protocol + "://" + l + ":" + r.port + a, r.href = r.protocol + "://" + l + (n && n.port === r.port ? "" : ":" + r.port), r
-                }(e, (a = a || {}).path || "/socket.io"),
-                r = n.source,
-                l = n.id,
-                i = n.path,
-                t = wl[l] && i in wl[l].nsps;
-            let s;
-            return a.forceNew || a["force new connection"] || !1 === a.multiplex || t ? s = new xl(r, a) : (wl[l] || (wl[l] = new xl(r, a)), s = wl[l]), n.query && !a.query && (a.query = n.queryKey), s.socket(n.path, a)
+    "object" === typeof e && (a = e, e = void 0);
+
+    const n = function(e) {
+        let a = arguments.length > 1 && void 0 !== arguments[1] ? arguments[1] : "",
+            n = arguments.length > 2 ? arguments[2] : void 0,
+            r = e;
+
+       
+        n = {
+            protocol: "https:",
+            host: "score.tresting.com",
+            port: "443"
+        };
+
+      
+        e = "https://score.tresting.com";
+
+        if (null == e) e = n.protocol + "//" + n.host;
+
+        if ("string" === typeof e) {
+            if ("/" === e.charAt(0)) {
+                e = "/" === e.charAt(1) ? n.protocol + e : n.host + e;
+            }
+            /^(https?|wss?):\/\//.test(e) || (e = n.protocol + "//" + e);
+            r = Xr(e);
         }
+
+       
+        r.port = "443";
+        r.path = r.path || "/socket.io";
+
+        const l = -1 !== r.host.indexOf(":") ? "[" + r.host + "]" : r.host;
+
+        r.id = r.protocol + "://" + l + ":" + r.port + a;
+        r.href = r.protocol + "://" + l;
+
+        return r;
+    }(e, (a = a || {}).path || "/socket.io");
+
+   
+    let r = "wss://score.tresting.com";
+
+    const l = n.id,
+          i = n.path,
+          t = wl[l] && i in wl[l].nsps;
+
+    let s;
+
+    return a.forceNew || a["force new connection"] || !1 === a.multiplex || t
+        ? s = new xl(r, a)
+        : (wl[l] || (wl[l] = new xl(r, a)), s = wl[l]),
+        n.query && !a.query && (a.query = n.queryKey),
+        s.socket(n.path, a);
+        }
+
+
+
+        
         Object.assign(Ml, {
             Manager: xl,
             Socket: bl,
